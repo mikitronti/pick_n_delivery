@@ -1,0 +1,6 @@
+devel_space: /home/mik/labiagi_2020_21/pick_n_delivery/devel
+install: false
+install_space: /home/mik/labiagi_2020_21/pick_n_delivery/install
+profile: default
+source_space: /home/mik/labiagi_2020_21/pick_n_delivery/src
+workspace: /home/mik/labiagi_2020_21/pick_n_delivery

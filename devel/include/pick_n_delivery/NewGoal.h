@@ -1,0 +1,1 @@
+/home/mik/labiagi_2020_21/pick_n_delivery/devel/.private/pick_n_delivery/include/pick_n_delivery/NewGoal.h

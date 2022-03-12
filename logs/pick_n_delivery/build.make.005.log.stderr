@@ -1,0 +1,42 @@
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:44:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kset_goal[m[K’ does not name a type; did you mean ‘[01m[Kstrcoll[m[K’?
+ void setgoal_callback(const [01;31m[Kset_goal[m[K::NewGoal& new_goal){
+                             [01;31m[K^~~~~~~~[m[K
+                             [32m[Kstrcoll[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:44:46:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+ void setgoal_callback(const set_goal::NewGoal[01;31m[K&[m[K new_goal){
+                                              [01;31m[K^[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:44:46:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:44:48:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Knew_goal[m[K’
+ void setgoal_callback(const set_goal::NewGoal& [01;31m[Knew_goal[m[K){
+                                                [01;31m[K^~~~~~~~[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:[m[K In function ‘[01m[Kvoid dist_callback(geometry_msgs::PoseStamped&)[m[K’:
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:70:41:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseStamped {aka struct geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Kx[m[K’
+  float dist = sqrt(pow((cur_pos[0]-pose.[01;31m[Kx[m[K),2) + pow((cur_pos[1]-pose.y),2));
+                                         [01;31m[K^[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:70:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kgeometry_msgs::PoseStamped {aka struct geometry_msgs::PoseStamped_<std::allocator<void> >}[m[K’ has no member named ‘[01m[Ky[m[K’
+  float dist = sqrt(pow((cur_pos[0]-pose.x),2) + pow((cur_pos[1]-pose.[01;31m[Ky[m[K),2));
+                                                                      [01;31m[K^[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:71:2:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_dist[m[K’ was not declared in this scope
+  [01;31m[Kpub_dist[m[K.publis(dist);
+  [01;31m[K^~~~~~~~[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:71:2:[m[K [01;36m[Knote: [m[Ksuggested alternative: ‘[01m[Kdist[m[K’
+  [01;36m[Kpub_dist[m[K.publis(dist);
+  [01;36m[K^~~~~~~~[m[K
+  [32m[Kdist[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:[m[K In function ‘[01m[Kvoid check1_callback(ros::TimerEvent&)[m[K’:
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:80:4:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_arrived[m[K’ was not declared in this scope
+    [01;31m[Kpub_arrived[m[K.publish("Bloccato");
+    [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:86:4:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_arrived[m[K’ was not declared in this scope
+    [01;31m[Kpub_arrived[m[K.publish("Arrivato");
+    [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:[m[K In function ‘[01m[Kvoid check2_callback(ros::TimerEvent&)[m[K’:
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:103:31:[m[K [01;31m[Kerror: [m[Ka function-definition is not allowed here before ‘[01m[K{[m[K’ token
+ int main(int argc,char** argv)[01;31m[K{[m[K
+                               [01;31m[K^[m[K
+[01m[K/home/mik/labiagi_2020_21/pick_n_delivery/src/pick_n_delivery/src/set_goal.cpp:139:1:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K}[m[K’ at end of input
+ [01;31m[K}[m[K
+ [01;31m[K^[m[K
+make[2]: *** [CMakeFiles/pick_n_delivery_node.dir/src/set_goal.cpp.o] Error 1
+make[1]: *** [CMakeFiles/pick_n_delivery_node.dir/all] Error 2
+make: *** [all] Error 2

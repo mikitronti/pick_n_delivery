@@ -1,0 +1,1 @@
+/home/mik/labiagi_2020_21/pick_n_delivery/devel/.private/pick_n_delivery/share/gennodejs/ros/pick_n_delivery/msg/NewGoal.js
