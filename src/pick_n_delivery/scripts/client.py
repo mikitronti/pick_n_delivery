@@ -20,12 +20,15 @@ DISCONNECT_MSG = "DISCONNECT"
 HEADER = 64
 FORMAT = 'utf-8'
 PORT = 9200
-SERVER="192.168.1.103"
+#SERVER="192.168.1.103"
+SERVER = "192.168.43.186"
 ADDR = (SERVER,PORT)
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+#client.settimeout(10)
 client.connect(ADDR)
+client.settimeout(None)
 DEST_TIMEOUT = 20 
-rif = 0
+
 
 #per semplificare gli utenti registrati sono salvati qui semplicemente in una lista sul client
 
@@ -93,7 +96,7 @@ def invioPacco(user):							#la funzione si occupa di chiedere all'uetente a chi
 		print(msg)
 	print("l'invio del pacco e' in corso\n")
 	
-def chiamaRobot(user):					#la funzione si occupa di far venire il robo dall'utente che si è appena loggato
+def chiamaRobot(user):					#la funzione si occupa di far venire il robot dall'utente che si e' appena loggato
 	print("Attendere prego, Il robopostino sta venendo da voi\n")
 	s="mitt,"+str(user.x)+","+str(user.y)+","+str(user.theta)
 	if DEBUG == 1:
@@ -109,6 +112,7 @@ def main():
 	
 	user=checkUser()
 	b = 0
+	rif = 0
 	while b != 1:
 		r=input("Desiderate mandare un pacco? [s/n]\n")
 		if str(r) == "s" or str(r) == "S":

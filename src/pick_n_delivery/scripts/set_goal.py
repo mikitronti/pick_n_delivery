@@ -104,7 +104,7 @@ if __name__ == "__main__":
 		sub_tf = rospy.Subscriber("/tf",TFMessage,position_callback)
 		
 		timer1 = rospy.Timer(rospy.Duration(0.5),timer1_callback)					#check periodici della posizione
-		timer2 = rospy.Timer(rospy.Duration(20000),timer2_callback)
+		timer2 = rospy.Timer(rospy.Duration(5),timer2_callback)
 		
 		print(str(p.pubblicato))
 		print(str(p.nav))

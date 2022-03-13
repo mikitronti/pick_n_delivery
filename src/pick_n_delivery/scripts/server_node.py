@@ -29,8 +29,8 @@ def checkBool(conn):		#il server controlla se il robot sta andando dal destinata
 		conn.send(msg.encode(FORMAT))
 
 
-def arr_callback(arr_msg, conn):			#quando arriva dal topic /Arrived un messaggio se il robot è arrivato lo comunica al client
-	print("\nho ricevuto"+arr_msg.data)		#se si è bloccato reinoltra l'ultima destinazione salvata
+def arr_callback(arr_msg, conn):			#quando arriva dal topic /Arrived un messaggio se il robot e' arrivato lo comunica al client
+	print("\nho ricevuto"+arr_msg.data)		#se si e' bloccato reinoltra l'ultima destinazione salvata
 	if arr_msg.data == ARRIVATO:
 		if p.to_mitt != 0:
 			msg = "PRONTO"
@@ -125,7 +125,8 @@ if __name__ == "__main__":
 	HEADER = 64
 	FORMAT = 'utf-8'
 	PORT = 9200
-	SERVER="192.168.1.103"
+	#SERVER="192.168.1.103"
+	SERVER = "192.168.43.186"
 	server= socket.socket()
 	ADDR = (SERVER,PORT)
 	server.bind(ADDR)
