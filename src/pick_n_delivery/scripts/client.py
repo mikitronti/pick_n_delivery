@@ -20,11 +20,9 @@ DISCONNECT_MSG = "DISCONNECT"
 HEADER = 64
 FORMAT = 'utf-8'
 PORT = 9200
-#SERVER="192.168.1.103"
-SERVER = "192.168.43.186"
+SERVER="192.168.1.103"
 ADDR = (SERVER,PORT)
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-#client.settimeout(10)
 client.connect(ADDR)
 client.settimeout(None)
 DEST_TIMEOUT = 20 
@@ -39,7 +37,7 @@ l.append(Utente("Pluto","mortazza",45.0120201111,12.25,1.8))
 l.append(Utente("Paperino","yes",32.3018074036,13.5620994568,-0.00534057617188))
 l.append(Utente("Minni","top",15.6076612473,14.2355070114,-0.00143432617188))
 l.append(Utente("Johnny","madoka",10.0647125244,34.1583137512,-0.00527954101562))
-l.append(Utente("amuro","0079",12.5790786743,37.7326850891,37.7326850891))
+l.append(Utente("amuro","0079",7.64544010162,39.0995521545,-0.0013427734375))
 l.append(Utente("hikaru","macuross",70.1204452515,13.9678087234,-0.00143432617188))
 l.append(Utente("Ocelot","metal",87.5139846802,9.73321342468,-0.00143432617188))
 l.append(Utente("Solid","snake",99.6203689575,19.0595703125,-0.00143432617188))

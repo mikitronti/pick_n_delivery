@@ -125,8 +125,7 @@ if __name__ == "__main__":
 	HEADER = 64
 	FORMAT = 'utf-8'
 	PORT = 9200
-	#SERVER="192.168.1.103"
-	SERVER = "192.168.43.186"
+	SERVER="192.168.1.103"
 	server= socket.socket()
 	ADDR = (SERVER,PORT)
 	server.bind(ADDR)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import time
 import rospy
 import math
 from pick_n_delivery.msg import NewGoal
@@ -80,7 +80,7 @@ def timer2_callback(event= None ):										#la funzione controlla euristicament
 	if p.nav != 0:
 		#if math.sqrt( math.pow(cur_pos[0] - old_pos[0],2) + math.pow(cur_pos[1] - old_pos[1],2)) < 0.5:
 		pos1 = cur_pos[0]
-		sleep(7)
+		time.sleep(0.5)
 		pos2 = cur_pos[0]
 		if pos1 == pos2:
 			rospy.loginfo("MI sono bloccato !!!")
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 		sub_tf = rospy.Subscriber("/tf",TFMessage,position_callback)
 		
 		timer1 = rospy.Timer(rospy.Duration(0.5),timer1_callback)					#check periodici della posizione
-		timer2 = rospy.Timer(rospy.Duration(5),timer2_callback)
+		timer2 = rospy.Timer(rospy.Duration(50),timer2_callback)
 		
 		print(str(p.pubblicato))
 		print(str(p.nav))
