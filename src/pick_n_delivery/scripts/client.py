@@ -14,7 +14,7 @@ class Utente:
 		self.theta = theta
 		
 		
-DEBUG = 1		
+DEBUG = 0		
 PRONTO = "PRONTO"
 DISCONNECT_MSG = "DISCONNECT"
 HEADER = 64
@@ -27,10 +27,13 @@ client.connect(ADDR)
 DEST_TIMEOUT = 20 
 rif = 0
 
+#per semplificare gli utenti registrati sono salvati qui semplicemente in una lista sul client
+
+
 l=[]
 l.append(Utente("PIPPO","ciao",45.0120201111,12.4125871658,1.8))
 l.append(Utente("Pluto","mortazza",45.0120201111,12.25,1.8))
-l.append(Utente("Pap","yes",32.3018074036,13.5620994568,-0.00534057617188))
+l.append(Utente("Paperino","yes",32.3018074036,13.5620994568,-0.00534057617188))
 l.append(Utente("Minni","top",15.6076612473,14.2355070114,-0.00143432617188))
 l.append(Utente("Johnny","madoka",10.0647125244,34.1583137512,-0.00527954101562))
 l.append(Utente("amuro","0079",12.5790786743,37.7326850891,37.7326850891))
@@ -41,7 +44,7 @@ l.append(Utente("AI","video",88.5164108276,37.5436820984,-0.00143432617188))
 
 
 
-def checkUser():
+def checkUser():    #la funzione verifica le credenziali inserite dall'utente
 	a = 0
 	user=""
 	while(a == 0):
@@ -62,8 +65,8 @@ def send(msg):
 	message=msg.encode(FORMAT)
 	client.send(message)
 
-def invioPacco(user):
-	print("Caricare un pacco sul robot\n")
+def invioPacco(user):							#la funzione si occupa di chiedere all'uetente a chi vuole inviare il pacco e di comunicare al server
+	print("Caricare un pacco sul robot\n")		#le coordinate a cui deve recarsi il robot
 	print("Potete inviare un pacco ai seguenti utenti registrati\n")
 	for elem in l:
 		if elem.nome != user.nome:
@@ -90,7 +93,7 @@ def invioPacco(user):
 		print(msg)
 	print("l'invio del pacco e' in corso\n")
 	
-def chiamaRobot(user):
+def chiamaRobot(user):					#la funzione si occupa di far venire il robo dall'utente che si è appena loggato
 	print("Attendere prego, Il robopostino sta venendo da voi\n")
 	s="mitt,"+str(user.x)+","+str(user.y)+","+str(user.theta)
 	if DEBUG == 1:
@@ -134,13 +137,13 @@ def main():
 			elif msg == "DEST":
 				print("Arrivato")
 				
-				while 1:
+				while 1:						#una volta che il pacco e' arrivato dal destinatatio l'utente puo' scegliere se uscire o inviare un nuovo pacco
 					
 					resp = input("Che operazione intendete eseguire adesso?\n	 1: Inviare un altro pacco\n	 2: Uscire\n")
 					
 					if resp == "1":
 						print("Attendere il tempo affinche' il precedente destinatario prenda il suo pacco")				
-						time.sleep(DEST_TIMEOUT)
+						time.sleep(DEST_TIMEOUT)					#il destinatario ha DEST_TIMEOUT secondi per prendere il suo pacco
 						chiamaRobot(user)
 						break
 					
@@ -153,14 +156,14 @@ def main():
 					
 				
 					
-			elif msg == "ok":
+			elif msg == "ok":		#se il robot e' libero il flag del rifiuto va a 0
 				
 				rif = 0
 				
 				if DEBUG != 0:
 					print("rif ="+str(rif))
 				
-			elif msg == "NO":
+			elif msg == "NO":		#se il robot e' occupato il client mette il flag del rifiuto a 1, attende del tempo e poi richiede di nuovo il robot
 				print("Al momento il robopostino non e' diponibile, attendere prego")
 				
 				rif = 1
@@ -183,7 +186,7 @@ def main():
 					if DEBUG != 0:
 						print(a)
 				
-					send(a)
+					send(a)			#il client manda sulla socket un messaggio di controllo
 		
 	return
 

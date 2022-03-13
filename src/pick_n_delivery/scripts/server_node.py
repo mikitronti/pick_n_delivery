@@ -12,16 +12,16 @@ from std_msgs.msg import String, Float32
 class params:
 	to_mitt =0
 	to_dest =0
-	robot = 0
+	robot = 0	#flag che indica se il robot e' occupato o meno
 	x = 0
 	y = 0
 	theta = 0
-	a = 0
+	
 	
 	
 
-def checkBool(conn):
-	if p.to_mitt != 0:
+def checkBool(conn):		#il server controlla se il robot sta andando dal destinatario o dal mittente e invia
+	if p.to_mitt != 0:		#questa info al client
 		msg = "vado dal mitt"
 		conn.send(msg.encode(FORMAT))
 	elif p.to_dest != 0:
@@ -29,8 +29,8 @@ def checkBool(conn):
 		conn.send(msg.encode(FORMAT))
 
 
-def arr_callback(arr_msg, conn):
-	print("\nho ricevuto"+arr_msg.data)
+def arr_callback(arr_msg, conn):			#quando arriva dal topic /Arrived un messaggio se il robot è arrivato lo comunica al client
+	print("\nho ricevuto"+arr_msg.data)		#se si è bloccato reinoltra l'ultima destinazione salvata
 	if arr_msg.data == ARRIVATO:
 		if p.to_mitt != 0:
 			msg = "PRONTO"
@@ -53,16 +53,16 @@ def arr_callback(arr_msg, conn):
 
 def client_handle(conn):
 
-	sub = rospy.Subscriber("/Arrived",String,arr_callback,callback_args= conn)
-	a=0
-	rif = 0
+	sub = rospy.Subscriber("/Arrived",String,arr_callback,callback_args= conn)	#ogni thread si iscrive alla topic /Arrived
+	a=0																#flag che indica se in questo thread il robot e' arrivato dal destinatario
+	rif = 0															#flag che indica se in questo thread il robot era occupato e quindi sta servendo un altro client
 	connesso = True
 	while connesso:
 		msg = conn.recv(256).decode(FORMAT)
 		if(msg):
 			data=msg.strip().split(",")
 			if(len(data)>1):
-				if data[0] == "mitt":
+				if data[0] == "mitt":							#invia il robot dal mittente
 					print("a= "+str(a))
 					if p.robot == 0 or a == 1: 
 						p.robot = 1
@@ -82,12 +82,12 @@ def client_handle(conn):
 							print("robot ="+str(p.robot)) 
 						a = 0
 		
-					else:
+					else:										#se il robot e' occupato manda OCCUPATO al client
 						conn.send(OCCUPATO.encode(FORMAT))
 						rif = 1
 				
 					
-				elif data[0] == "dest":
+				elif data[0] == "dest":							#invia il robto al destinatario
 						p.x= float(data[1])
 						p.y= float(data[2])
 						p.theta = float(data[3])
@@ -103,7 +103,7 @@ def client_handle(conn):
 						a=1
 			
 			
-			if msg == DISCONNECT_MSG:
+			if msg == DISCONNECT_MSG:							#il server si disconnette dal client
 				p.robot = 0
 				connesso = False
 	
@@ -137,7 +137,7 @@ if __name__ == "__main__":
 	rate = rospy.Rate(10)
 	threadCount = 0
 
-	while True:
+	while True:													#il server accetta una connessione e lancia un nuovo Thread
 		conn , addr = server.accept()
 		l.append(conn)
 		_thread.start_new_thread(client_handle, (conn, ))

@@ -24,7 +24,7 @@ cur_pos = numpy.empty(2,float)
 tar_pos = numpy.empty(2,float)
 old_pos = numpy.empty(2,float)
 
-def position_callback(tf):
+def position_callback(tf):												#il nodo aggiorna la posizione del robot
 	tok=tfBuffer.can_transform("map","base_link",rospy.Time(0))
 	if tok != 0:
 		tst= TransformStamped()
@@ -37,7 +37,7 @@ def position_callback(tf):
 			print("posizione aggiornata\n")
 		
 		
-def move_to_goal_callback(new_goal):
+def move_to_goal_callback(new_goal):									#la funzione aggiorna la destinazione del robot
 	
 	rospy.loginfo("Mi muovo")
 	
@@ -64,7 +64,7 @@ def move_to_goal_callback(new_goal):
 	
 		
 		
-def timer1_callback(event= None):
+def timer1_callback(event= None):										#la funzione controlla se il robot e' arrivato alla destinazione
 	if DEBUG == 1:
 		print(str(p.nav)+"sono il check dell'arrivo\n")
 	if p.nav != 0:
@@ -74,7 +74,7 @@ def timer1_callback(event= None):
 			p.nav = 0
 			
 
-def timer2_callback(event= None ):
+def timer2_callback(event= None ):										#la funzione controlla euristicamente se il robot si e' bloccato
 	if DEBUG == 1:
 		print(str(p.nav)+"sono il check del blocco\n")
 	if p.nav != 0:
@@ -97,13 +97,13 @@ if __name__ == "__main__":
 		listen = tf2_ros.TransformListener(tfBuffer);
 		rate = rospy.Rate(10)
 		
-		pub = rospy.Publisher("/move_base_simple/goal",PoseStamped,queue_size=10)
+		pub = rospy.Publisher("/move_base_simple/goal",PoseStamped,queue_size=10)	#pubblicazione topic
 		pub_arr = rospy.Publisher("/Arrived",String,queue_size=10)
 		
-		sub = rospy.Subscriber("New_Goal",NewGoal,move_to_goal_callback)
+		sub = rospy.Subscriber("New_Goal",NewGoal,move_to_goal_callback)			#sottoscrizione topic
 		sub_tf = rospy.Subscriber("/tf",TFMessage,position_callback)
 		
-		timer1 = rospy.Timer(rospy.Duration(0.5),timer1_callback)
+		timer1 = rospy.Timer(rospy.Duration(0.5),timer1_callback)					#check periodici della posizione
 		timer2 = rospy.Timer(rospy.Duration(20000),timer2_callback)
 		
 		print(str(p.pubblicato))
