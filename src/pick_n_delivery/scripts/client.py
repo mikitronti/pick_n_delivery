@@ -25,7 +25,7 @@ ADDR = (SERVER,PORT)
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 client.connect(ADDR)
 client.settimeout(None)
-DEST_TIMEOUT = 20 
+DEST_TIMEOUT = 5 
 
 
 #per semplificare gli utenti registrati sono salvati qui semplicemente in una lista sul client
